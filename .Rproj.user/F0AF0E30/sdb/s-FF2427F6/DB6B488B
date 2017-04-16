@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(tidyverse)\nlibrary(lubridate)\nlibrary(prophet)\n\nbikes <- read_csv('bikes.csv')\nbikes_week <- bikes %>% select(datetime, count) %>%\n    mutate(datetime = date(datetime)) %>%\n    group_by(datetime) %>%\n    summarise(total = sum(count)) %>%\n    mutate(weekday = wday(datetime, label = T)) %>%\n    group_by(weekday) %>%\n    summarise(total = sum(total)) %>%\n    ggplot(aes(x = weekday, y = total)) + \n    geom_col()\n",
+    "created" : 1492344705310.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3361473382",
+    "id" : "DB6B488B",
+    "lastKnownWriteTime" : 1492347833,
+    "last_content_update" : 1492347833175,
+    "path" : "~/Documents/Prophet/plots.R",
+    "project_path" : "plots.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(prophet)\nlibrary(tidyverse)\n\ndf <- read.table('example_wp_peyton_manning.txt', header = T, sep = ',') %>%\n    mutate(y = log(y))\n\nm <- prophet(df)\n\nfuture <- make_future_dataframe(m, periods = 365)\n\nforecast <- predict(m, future)\n#tail(forecast[c('ds', 'yhat', 'yhat_lower', 'yhat_upper')])\n\nplot(m, forecast)\nprophet_plot_components(m, forecast)\n",
+    "created" : 1492286071516.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1731760153",
+    "id" : "FA1BD869",
+    "lastKnownWriteTime" : 1492287221,
+    "last_content_update" : 1492287222004,
+    "path" : "~/Documents/Prophet/demo.R",
+    "project_path" : "demo.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
