@@ -57,7 +57,7 @@ results <- vector(mode = 'numeric', length = nrow(prophetGrid))
 for (i in seq_len(nrow(prophetGrid))) {
     parameters <- prophetGrid[i, ]
     if (parameters$growth == 'logistic') {train$cap <- parameters$capacity}
-    set.seed(12321)
+    
     m <- prophet(train, growth = parameters$growth, holidays = holidays,
                  seasonality.prior.scale = parameters$seasonality_prior_scale, 
                  changepoint.prior.scale = parameters$changepoint_prior_scale,
@@ -82,8 +82,8 @@ best_params <- prophetGrid[prophetGrid$results == min(results), ]
 # Retrain using train and validation set
 retrain <- bind_rows(train, valid)
 retrain$cap <- best_params$capacity
-m <- prophet(retrain, growth = 'logistic', holidays = holidays,
-             seasonality.prior.scale = best_params$seasonality_prior_scale, 
+m <- prophet(retrain, growth = best_params$growth, holidays = holidays,
+             seasonality.prior.scale = best_params$seasonality_prior_scale,
              changepoint.prior.scale = best_params$changepoint_prior_scale,
              holidays.prior.scale = best_params$holidays_prior_scale)
 
