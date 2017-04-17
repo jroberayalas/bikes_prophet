@@ -47,9 +47,9 @@ prophetGrid <- expand.grid(changepoint_prior_scale = c(0.05, 0.5, 0.001),
                            seasonality_prior_scale = c(100, 10, 1),
                            holidays_prior_scale = c(100, 10, 1),
                            capacity = c(6043, 6500, 7000, 8000),
-                           growth = c('linear', 'logistic'))
-prophetGrid <- prophetGrid[-c(28:108), ]
-prophetGrid[prophetGrid$growth == 'linear', 'capacity'] <- NA
+                           growth = 'logistic')
+#prophetGrid <- prophetGrid[-c(28:108), ]
+#prophetGrid[prophetGrid$growth == 'linear', 'capacity'] <- NA
 prophetGrid$growth <- as.character(prophetGrid$growth)
 results <- vector(mode = 'numeric', length = nrow(prophetGrid))
 
